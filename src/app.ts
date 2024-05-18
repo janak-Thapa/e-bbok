@@ -1,6 +1,7 @@
 import express from "express";
 import golbalErrorHnadler from "./middlewares/globalErrorHndler";
 import userRouter from "./user/userRouter";
+import bookRouter from "./book/bookRouter";
 
 
 const app = express();
@@ -14,6 +15,8 @@ app.get('/',(req,res)=>{
 
 
 app.use("/api/users", userRouter)
+
+app.use("/api/books",bookRouter)
 
 app.use(golbalErrorHnadler)
 
