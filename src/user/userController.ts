@@ -54,7 +54,7 @@ const createUser = async(req:Request,res:Response,next:NextFunction)=>{
     const token = sign({sub:newUser._id},config.jwtSecret as string,{
       expiresIn:"7d"
     })
-    res.json({acessToken:token});
+    res.status(201).json({acessToken:token});
   
 
   } catch(err){
@@ -64,9 +64,5 @@ const createUser = async(req:Request,res:Response,next:NextFunction)=>{
   
 }
 
-const loginUser = async(req:Request,res:Response,next:NextFunction)=>{
-  res.status(201).json({message:"ok"})
-}
 
-
-export {createUser,loginUser};
+export {createUser};
