@@ -64,5 +64,9 @@ const createUser = async(req:Request,res:Response,next:NextFunction)=>{
   
 }
 
+const loginUser = async(req:Request,res:Response,next:NextFunction)=>{
+  res.status(201).json({message:"ok"})
+}
 
-export {createUser};
+
+export {createUser,loginUser};
