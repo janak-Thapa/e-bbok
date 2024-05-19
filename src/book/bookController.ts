@@ -129,5 +129,16 @@ const updateBook = async (req: Request, res: Response, next: NextFunction)=>{
     res.json(updatedBook)
 }
 
-export { createBook, updateBook };
+
+const listBook = async (req: Request, res: Response, next: NextFunction)=>{
+try{
+    // todo add pagination
+    const book  = await bookModel.find();
+    res.json(book)
+} catch(err){
+    return next(createHttpError(500,"Error while getting books."))
+}
+}
+
+export { createBook, updateBook , listBook};
 
