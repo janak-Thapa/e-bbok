@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from "express";
 import cloudinary from "../config/cloudinary";
 import createHttpError from "http-errors";
 import bookModel from "./bookModel";
+import { isGeneratorObject } from "node:util/types";
 
 const createBook = async (req: Request, res: Response, next: NextFunction) => {
     const { title, genre } = req.body;
@@ -34,6 +35,9 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
 
         console.log("bookFileUploadResult", bookFileUploadResult);
         console.log("uploadResult", uploadResult);
+        //  @ts-ignore
+            console.log("UserId",req.userId);
+            
 
         // Create new book entry in the database
         const newBook = await bookModel.create({
