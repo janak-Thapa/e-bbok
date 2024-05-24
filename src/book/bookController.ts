@@ -133,7 +133,7 @@ const updateBook = async (req: Request, res: Response, next: NextFunction)=>{
 const listBook = async (req: Request, res: Response, next: NextFunction)=>{
 try{
     // todo add pagination
-    const book  = await bookModel.find();
+    const book  = await bookModel.find().populate("author","name");
     res.json(book)
 } catch(err){
     return next(createHttpError(500,"Error while getting books."))
@@ -144,7 +144,7 @@ const getSingleBook = async(req: Request, res: Response, next: NextFunction)=>{
     const bookId =req.params.bookId;
 
     try{
-        const book = await bookModel.findOne({_id:bookId})
+        const book = await bookModel.findOne({_id:bookId}).populate("author","name")
         if(!book){
             return next(createHttpError(404,"Book not Found"))
 
